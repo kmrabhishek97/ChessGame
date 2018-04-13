@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=410; user-scalable=no; minimal-ui">
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="lib/chessboard-0.3.0.min.css">
+    <link rel="stylesheet" href="lib/WinJS.4.0/css/ui-light.css" />
+    <link rel="stylesheet" href="/default.css" />
+	<link rel="stylesheet" href="/style.css" />
+	<link rel="stylesheet" href="jquery.confirm/jquery.confirm.css" />
+	<link rel="stylesheet" href="style.css">
+	<link href='/materialicons.css' rel='stylesheet' type='text/css'>
+	<style>
+		#chat{
+			height:400px;
+		}
+		#contentWrap{
+		}
+		#chatWrap{
+			float:left;
+			border:1px #000 solid;
+		}
+		#users{
+			border #000 solid;
+		}
+	</style>
+	<!-- <script> -->
+		<!-- function f(){ -->
+			<!-- alert("demo successful"); -->
+		<!-- } -->
+		<!-- function sendMessage(){ -->
+			<!-- var socket=io(); -->
+			<!-- var message=document.getElementById('message').value; -->
+			<!-- alert("ready to send message "+message); -->
+			<!-- socket.emit('send-message',message); -->
+			<!-- document.getElementById('message').innerHTML=''; -->
+			<!-- alert("message sent"); -->
+			<!-- socket.on("new-message",function(data){ -->
+			<!-- var ch=document.getElementById('chat').value; -->
+			<!-- document.getElementById('chat').innerHTML=ch+"<b>"+data.sender+"</b> : "+data.msg+"<br/>" -->
+		<!-- }); -->
+			
+		<!-- } -->
+		<!-- socket.on("new-message",function(data){ -->
+			<!-- var ch=document.getElementById('chat').value; -->
+			<!-- document.getElementById('chat').innerHTML=ch+"<b>"+data.sender+"</b> : "+data.msg+"<br/>" -->
+		<!-- }); -->
+	</script>
+  </head>
+  <body>
+    <div class="page lobby" id='page-lobby' style="text-align:center">
+	  <a href='logout' style="float:right;margin-right: 300px;margin-top: 20px"><i class="material-icons text-gray">power_settings_new</i></a>
+	  <h1 style="float:right;margin-right: 200px">Chess Game</h1>
+	  <h2 style="margin-top: 10px">Welcome</h2>
+      <h2 id='userLabel'></h2>
+      <h3>Active games</h3>
+      <div id='gamesList'>
+        No active games
+      </div>
+      <h3>Online players</h3>
+       <div id='userList'>
+         No users online
+      </div>
+    </div>
+    <div class="page game" id='page-game'>
+      <div id="frame" style="width: 430px;float: left">
+			<div class="content">
+				<div class="contact-profile">
+					
+					<p><h2>Chat Panel</h2></p>
+					<!-- <div class="social-media"> -->
+						<!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->
+						<!-- <i class="fa fa-twitter" aria-hidden="true"></i> -->
+						 <!-- <i class="fa fa-instagram" aria-hidden="true"></i> -->
+					<!-- </div> -->
+				</div>
+				<div class="messages">
+					<ul id="messagelist">
+						
+					</ul>
+				</div>
+			</div>
+			<div class="message-input" style="top:96vh;left:70%;>
+					<table border="1">
+					<tr>
+					<td><input type="text" placeholder="Write your message..." /></td>
+					<td><button id="send">Send</button><td>
+					</tr>
+					</table>
+			</div>
+		</div>	
+		<div align='left' style="padding-top: 20px;margin-left: 480px"><button id='game-back' style="margin-right:50px">Go Back</button>
+    <button id='game-resign'>Quit Game</button></div>
+	  <div id='game-board' style="height:500px; width: 400px;float:left;margin-top: 50px;margin-left: 10px"></div>
+	  <div style="width: 400px;float:left">
+		<div style="float:right;height:500px;overflow-y" id="opponentmoves">
+			<h3>Your Opponent</h3>
+		</div>
+		<div style="float:right;margin-right:50px;height:500px;overflow-y"id="yourmoves">
+			<h3>You</h3>
+		</div>
+	  </div>
+			<!-- <div id="contentWrap" style="float:right; height:500px"> -->
+			<!-- <div id="chatWrap"> -->
+				<!-- <div id="chat"></div>  -->
+					<!-- <input size="35" id="message"></input> -->
+					<!-- <button id="send">Send message</button> -->
+			<!-- </div> -->
+		<!-- </div> -->
+		
+    </div>
+	
+<script src='http://production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script >
+$(".messages").animate({ scrollTop: $('.content').height() }, "fast");
+
+
+
+
+
+
+//# sourceURL=pen.js
+</script>
+	
+    <script src="lib/socket.io-1.2.0.js"></script>
+    <script src="lib/jquery-1.11.1.js"></script>
+    <script src="lib/WinJS.4.0/js/WinJS.min.js"></script>
+    <script src="lib/chess.min.js"></script> 
+    <script src="lib/chessboard-0.3.0.min.js"></script> 
+    <script src="/default.js"></script>
+	<script src="jquery.confirm/jquery.confirm.js"></script>
+  </body>
+</html>
