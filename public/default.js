@@ -209,10 +209,50 @@
 		});
 			
 		socket.on("resign-match-delete-chat",function(data){
-			if((data.username===username && data.opponent===myOpponent) ||
-				(data.username===myOpponent && data.opponent===username)){
-					document.getElementById("chat").innerHTML="";
+			if((data.username===username && data.opponent===myOpponent)){
+					//$.confirm.hide();
+					$.confirm({
+						'title'		: "You Lose",
+						'message'	: "You have lost the game to "+myOpponent,
+						'buttons'	: {
+							
+						}
+					});
+					// var w = window.open('','','width=100,height=100');
+					// w.document.write('You Lose');
+					// w.focus();
+					setTimeout(function() {
+						//alert("You lose");
+						//w.close();
+						$.confirm.hide();
+						socket.emit('login', username);
+						$('#page-game').hide();
+						$('#page-lobby').show();
+					}, 5000);
+					
+					document.getElementById("messagelist").innerHTML="";
+					document.getElementById("opponentmoves").innerHTML="<h3>Your Opponent</h3>";
+					document.getElementById("yourmoves").innerHTML="<h3>You<h3>";
 				}
+				
+			else if((data.username===myOpponent && data.opponent===username)){
+				$.confirm({
+					'title'		: "Congratulations!!!",
+					'message'	: myOpponent+" has left the game.<br/><br/>You Win",
+					'buttons'	: {
+						
+					}
+				});
+				setTimeout(function() {
+					$.confirm.hide();
+					//socket.emit('login', username);
+					$('#page-game').hide();
+					$('#page-lobby').show();
+				}, 5000);
+				document.getElementById("messagelist").innerHTML="";
+				document.getElementById("opponentmoves").innerHTML="<h3>Your Opponent</h3>";
+				document.getElementById("yourmoves").innerHTML="<h3>You<h3>";
+			}
 		});
 		
 		
@@ -271,11 +311,28 @@
       
       $('#game-resign').on('click', function() {
 		//document.getElementById("chat").innerHTML="";
-        socket.emit('resign', {userId: username, gameId: serverGame.id,opponent:myOpponent});
+		$.confirm({
+					'title'		: 'Warning',
+					'message'	: "If you quit, you will lose the game...",
+					'buttons'	: {
+							'Quit Game': 
+							{
+								'class'	: 'blue',
+								'action': function(){
+									// $.confirm.hide();
+									socket.emit('resign', {userId: username, gameId: serverGame.id,opponent:myOpponent});	
+								}
+							},
+							'Cancel': 
+							{
+									'class'	: 'gray',
+									'action': function(){
+										
+									}	// Nothing to do in this case. You can as well omit the action property.
+								}
+							}
+				});
         
-        socket.emit('login', username);
-        $('#page-game').hide();
-        $('#page-lobby').show();
       });
       
       var addUser = function(userId) {

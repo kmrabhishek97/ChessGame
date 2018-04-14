@@ -2,10 +2,10 @@
 	
 	$.confirm = function(params){
 		
-		if($('#confirmOverlay').length){
-			// A confirm is already shown on the page:
-			return false;
-		}
+		// if($('#confirmOverlay').length){
+			// // A confirm is already shown on the page:
+			// return false;
+		// }
 		
 		var buttonHTML = '';
 		$.each(params.buttons,function(name,obj){
